@@ -39,6 +39,7 @@ INSERT INTO actors (name, movie)
 
 
 
+
 SELECT * FROM actors;
 
 

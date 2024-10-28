@@ -11,19 +11,18 @@ const express = require('express'),
   
   client.connect()
 
-  app.get('/', (_request, response) => {
+/*   app.get('/', (_request, response) => {
     response.send({ hello: 'World' })
-  })
+  }) */
   
   
-/* app.get('/api', async (_request, response) => {
+app.get('/', async (_request, response) => {
   const { rows } = await client.query(
-    'SELECT * FROM films WHERE title = $1',
+    'SELECT * FROM movies WHERE title = $1',
     ['Seven']
   )
   response.send(rows)
-}) */
-
+})
 
   const port = process.env.PORT || 3000
   
