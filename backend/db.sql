@@ -50,7 +50,7 @@ INSERT INTO actors (name, movie)
  INSERT INTO actors (name, movie) 
   VALUES ('Olivia Newton-John', 2);
 
-  INSERT INTO actos (name, movie)  
+  INSERT INTO actors (name, movie)  
   VALUES ('Mikael Persbrandt', 3);
 
   INSERT INTO actors (name, movie)      

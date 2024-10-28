@@ -11,12 +11,12 @@ const express = require('express'),
   
   client.connect()
 
-/*   app.get('/', (_request, response) => {
+  app.get('/', (_request, response) => {
     response.send({ hello: 'World' })
-  }) */
+  })
   
   
-app.get('/', async (_request, response) => {
+app.get('/api', async (_request, response) => {
   const { rows } = await client.query(
     'SELECT * FROM movies WHERE title = $1',
     ['Seven']
