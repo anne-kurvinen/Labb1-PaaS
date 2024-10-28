@@ -1,6 +1,7 @@
 
 # Labb1 (PaaS)
-LÄNKEN TILL REPOT I GITHUB: https://github.com/anne-kurvinen/Labb1-PaaS.git
+LÄNKEN TILL REPOT I GITHUB:  https://github.com/anne-kurvinen/Labb1-PaaS
+
 
 Detta är min inlämningsuppgift för Labb1 (PaaS), en enklare fullstack-applikation via en PaaS-lösning som Render.
 
