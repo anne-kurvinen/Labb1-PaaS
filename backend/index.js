@@ -1,6 +1,6 @@
-/* const dotenv = require('dotenv')
-const express = require('express'),
-  { Client } = require('pg')
+const dotenv = require('dotenv'),
+ express = require('express'),
+  { Client } = require('pg');
   
   const app = express()
   dotenv.config()
@@ -11,15 +11,17 @@ const express = require('express'),
   
   client.connect()
 
-  app.get('/api', (_request, response) => {
-    response.send({ hello: 'World' })
-  })
-  
-  
-app.get('/api', async (_request, response) => {
+app.get('/', async (_request, response) => {
   const { rows } = await client.query(
-    'SELECT * FROM movies WHERE title = $1',
-    ['Seven']
+    'SELECT * FROM actors',
+  )
+  response.send(rows)
+})
+
+app.get('/', async (_request, response) => {
+  const { rows } = await client.query(
+    'SELECT * FROM movies WHERE productionyear > $1',
+    [1960]
   )
   response.send(rows)
 })
@@ -28,9 +30,9 @@ app.get('/api', async (_request, response) => {
   
   app.listen(port, () => {
     console.log(`Redo på http://localhost:${port}`)
-  }) */
+  })
 
-    const express = require('express'),
+/*     const express = require('express'),
     path = require('path')
   
   const app = express()
@@ -43,4 +45,4 @@ app.get('/api', async (_request, response) => {
   
   app.listen(3000, () => {
     console.log('Redo på http://localhost:3000/')
-  })
+  }) */
