@@ -24,7 +24,7 @@ INSERT INTO movies (title, productionYear)
 CREATE TABLE actors (
   id serial PRIMARY KEY,
   name TEXT NOT NULL,
-  movies INTEGER,
+  movie INTEGER,
   FOREIGN KEY(movie) REFERENCES movies(id)
 );
 
