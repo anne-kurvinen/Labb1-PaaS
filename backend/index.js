@@ -11,17 +11,32 @@ const dotenv = require('dotenv'),
   
   client.connect()
 
-app.get('/', async (_request, response) => {
+app.get('/movies', async (_request, response) => {
+  const { rows } = await client.query(
+    'SELECT * FROM movies',
+  )
+  response.send(rows)
+})
+
+app.get('/actors', async (_request, response) => {
   const { rows } = await client.query(
     'SELECT * FROM actors',
   )
   response.send(rows)
 })
 
-app.get('/', async (_request, response) => {
+app.post('/movies', async (_request, response) => {
   const { rows } = await client.query(
-    'SELECT * FROM movies WHERE productionyear > $1',
-    [1960]
+    'INSERT INTO movies (title, productionYear) VALUES ($1, $2)',
+    [title, productionYear]
+  )
+  response.send(rows)
+})
+
+app.delete('/actors/:id', async (_request, response) => {
+  const { rows } = await client.query(
+    'DELETE FROM actors WHERE id = $1',
+    [id]
   )
   response.send(rows)
 })
@@ -31,18 +46,3 @@ app.get('/', async (_request, response) => {
   app.listen(port, () => {
     console.log(`Redo på http://localhost:${port}`)
   })
-
-/*     const express = require('express'),
-    path = require('path')
-  
-  const app = express()
-  
-  app.get('/api', (_request, response) => {
-    response.send({ hello: 'World' })
-  })
-  
-  app.use(express.static(path.join(path.resolve(), 'dist')))
-  
-  app.listen(3000, () => {
-    console.log('Redo på http://localhost:3000/')
-  }) */

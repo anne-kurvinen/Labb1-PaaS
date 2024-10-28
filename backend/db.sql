@@ -38,8 +38,6 @@ INSERT INTO actors (name, movie)
  VALUES ('Peter Haber', 3);
 
 
-
-
 SELECT * FROM actors;
 
 
@@ -47,13 +45,13 @@ SELECT * FROM actors;
 INSERT INTO actors (name, movie) 
  VALUES ('Morgan Freeman', 1);
 
- INSERT INTO actors (name, movie) 
-  VALUES ('Olivia Newton-John', 2);
+INSERT INTO actors (name, movie) 
+ VALUES ('Olivia Newton-John', 2);
 
-  INSERT INTO actors (name, movie)  
-  VALUES ('Mikael Persbrandt', 3);
+INSERT INTO actors (name, movie)  
+ VALUES ('Mikael Persbrandt', 3);
 
-  INSERT INTO actors (name, movie)      
-  VALUES ('Samuel L. Jackson', 4);
+INSERT INTO actors (name, movie)      
+ VALUES ('Samuel L. Jackson', 4);
 
 
