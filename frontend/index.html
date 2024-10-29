@@ -1,14 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Labb1-PaaS</title>
-  </head>
-  <body>
-    <h1>Mina Filmer</h1>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies and Actors</title>
+</head>
+<body>
+  <h1>Movies</h1>
+  <ul id="movies-list"></ul>
+
+  <h1>Actors</h1>
+  <ul id="actors-list"></ul>
+
+  <script>
+    async function fetchMovies() {
+      const response = await fetch('/api/movies');
+      const movies = await response.json();
+      const moviesList = document.getElementById('movies-list');
+      moviesList.innerHTML = '';
+      movies.forEach(movie => {
+        const li = document.createElement('li');
+        li.textContent = `${movie.title} (${movie.productionyear})`;
+        moviesList.appendChild(li);
+      });
+    }
+
+    async function fetchActors() {
+      const response = await fetch('/api/actors');
+      const actors = await response.json();
+      const actorsList = document.getElementById('actors-list');
+      actorsList.innerHTML = '';
+      actors.forEach(actor => {
+        const li = document.createElement('li');
+        li.textContent = actor.name;
+        actorsList.appendChild(li);
+      });
+    }
+
+    fetchMovies();
+    fetchActors();
+  </script>
+</body>
 </html>

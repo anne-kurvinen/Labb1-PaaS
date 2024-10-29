@@ -11,21 +11,21 @@ const dotenv = require('dotenv'),
   
   client.connect()
 
-app.get('/movies', async (_request, response) => {
+app.get('/api/movies', async (_request, response) => {
   const { rows } = await client.query(
     'SELECT * FROM movies',
   )
   response.send(rows)
 })
 
-app.get('/actors', async (_request, response) => {
+app.get('/api/actors', async (_request, response) => {
   const { rows } = await client.query(
     'SELECT * FROM actors',
   )
   response.send(rows)
 })
 
-app.post('/movies', async (_request, response) => {
+app.post('/api/movies', async (_request, response) => {
   const { rows } = await client.query(
     'INSERT INTO movies (title, productionYear) VALUES ($1, $2)',
     [title, productionYear]
@@ -33,7 +33,7 @@ app.post('/movies', async (_request, response) => {
   response.send(rows)
 })
 
-app.delete('/actors/:id', async (_request, response) => {
+app.delete('/api/actors/:id', async (_request, response) => {
   const { rows } = await client.query(
     'DELETE FROM actors WHERE id = $1',
     [id]
