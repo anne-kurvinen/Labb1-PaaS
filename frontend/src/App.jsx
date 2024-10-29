@@ -5,14 +5,23 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(1)
-  
+
   useEffect(() => {
-    fetch('/api')
-      .then((response) => response.json())
-      .then((result) => {
-        alert(`Hello ${result.hello}!`)
-      })
-  }, [])
+    fetch('/api/movies') 
+       .then((response) => response.json())
+       .then((result) => {
+     console.log(result); 
+  })
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/actors') 
+       .then((response) => response.json())
+       .then((result) => {
+     console.log(result); 
+  })
+  }, []);
+  
 
   return (
     <>
