@@ -7,6 +7,14 @@ function App() {
   const [count, setCount] = useState(1)
 
   useEffect(() => {
+    fetch('/api')
+      .then((response) => response.json())
+      .then((result) => {
+        alert(`Hello ${result.hello}!`)
+      })
+  }, [])
+
+  useEffect(() => {
     fetch('/api/movies') 
        .then((response) => response.json())
        .then((result) => {
