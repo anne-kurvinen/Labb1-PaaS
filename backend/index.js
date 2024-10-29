@@ -9,37 +9,49 @@ const dotenv = require('dotenv'),
     connectionString: process.env.PGURI
   })
   
-  client.connect()
+  client.connect().catch(err => console.error('Connection error', err.stack));
 
 app.get('/api/movies', async (_request, response) => {
-  const { rows } = await client.query(
-    'SELECT * FROM movies',
-  )
-  response.send(rows)
-})
+  try {
+    const { rows } = await client.query('SELECT * FROM movies WHERE productionyear > $1', [1960]);
+    response.json(rows);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send('Server Error');
+  }
+});
 
 app.get('/api/actors', async (_request, response) => {
-  const { rows } = await client.query(
-    'SELECT * FROM actors',
-  )
-  response.send(rows)
-})
+  try {
+    const { rows } = await client.query('SELECT * FROM actors');
+    response.json(rows);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send('Server Error');
+  }
+});
 
-app.post('/api/movies', async (_request, response) => {
-  const { rows } = await client.query(
-    'INSERT INTO movies (title, productionYear) VALUES ($1, $2)',
-    [title, productionYear]
-  )
-  response.send(rows)
-})
+app.post('/api/movies', async (request, response) => {
+  const { title, productionYear } = request.body;
+  try {
+    const result = await client.query('INSERT INTO movies (title, productionYear) VALUES ($1, $2) RETURNING *', [title, productionYear]);
+    response.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send('Server Error');
+  }
+});
 
-app.delete('/api/actors/:id', async (_request, response) => {
-  const { rows } = await client.query(
-    'DELETE FROM actors WHERE id = $1',
-    [id]
-  )
-  response.send(rows)
-})
+app.delete('/api/movies/:id', async (request, response) => {
+  const { id } = request.params;
+  try {
+    await client.query('DELETE FROM movies WHERE id = $1', [id]);
+    response.status(204).send();
+  } catch (err) {
+    console.error(err);
+    response.status(500).send('Server Error');
+  }
+});
 
   const port = process.env.PORT || 3000
   
