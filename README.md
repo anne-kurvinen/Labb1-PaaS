@@ -1,4 +1,7 @@
 # Labb1 (PaaS)
+
+LÄNKEN TILL RENDER: https://labb1-paas.onrender.com
+
 LÄNKEN TILL REPOT I GITHUB:  https://github.com/anne-kurvinen/Labb1-PaaS
 
 
