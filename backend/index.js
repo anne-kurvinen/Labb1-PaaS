@@ -1,9 +1,12 @@
 const dotenv = require('dotenv'),
  express = require('express'),
   { Client } = require('pg');
+  path = require('path')
   
   const app = express()
   dotenv.config()
+
+  app.use(express.static(path.join(path.resolve(), 'dist')))
 
   const client = new Client({
     connectionString: process.env.PGURI
