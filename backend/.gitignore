@@ -1,4 +1,5 @@
 node_modules
 dist
-.envdist
+.env
 .DS_Store
+*.js
